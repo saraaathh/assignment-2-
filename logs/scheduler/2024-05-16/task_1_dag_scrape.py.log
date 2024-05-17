@@ -1,0 +1,55 @@
+[2024-05-17T04:35:50.151+0530] {processor.py:161} INFO - Started process (PID=10865) to work on /Users/saraths17/airflow/dags/task_1_dag_scrape.py
+[2024-05-17T04:35:50.152+0530] {processor.py:830} INFO - Processing file /Users/saraths17/airflow/dags/task_1_dag_scrape.py for tasks to queue
+[2024-05-17T04:35:50.152+0530] {logging_mixin.py:188} INFO - [2024-05-17T04:35:50.152+0530] {dagbag.py:545} INFO - Filling up the DagBag from /Users/saraths17/airflow/dags/task_1_dag_scrape.py
+[2024-05-17T04:35:50.152+0530] {processor.py:842} WARNING - No viable dags retrieved from /Users/saraths17/airflow/dags/task_1_dag_scrape.py
+[2024-05-17T04:35:50.183+0530] {processor.py:186} ERROR - Got an exception! Propagating...
+Traceback (most recent call last):
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
+    self.dialect.do_execute(
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: import_error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/airflow/dag_processing/processor.py", line 182, in _run_file_processor
+    _handle_dag_file_processing()
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/airflow/dag_processing/processor.py", line 163, in _handle_dag_file_processing
+    result: tuple[int, int] = dag_file_processor.process_file(
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/airflow/utils/session.py", line 79, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/airflow/dag_processing/processor.py", line 843, in process_file
+    DagFileProcessor.update_import_errors(
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/airflow/api_internal/internal_api_call.py", line 115, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/airflow/utils/session.py", line 76, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/airflow/dag_processing/processor.py", line 622, in update_import_errors
+    existing_import_error_files = [x.filename for x in session.query(errors.ImportError.filename).all()]
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2768, in all
+    return self._iter().all()
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1712, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1631, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 332, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1498, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1862, in _execute_context
+    self._handle_dbapi_exception(
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2043, in _handle_dbapi_exception
+    util.raise_(
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 208, in raise_
+    raise exception
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
+    self.dialect.do_execute(
+  File "/Users/saraths17/opt/anaconda3/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: import_error
+[SQL: SELECT import_error.filename AS import_error_filename 
+FROM import_error]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
